@@ -40,4 +40,18 @@ public class MemberService {
         return new MemberResponseDto(findMember.getUsername(), findMember.getEmail());
     }
 
+    public void delete(Long id) {
+        Optional<Member> optionalMember = memberRepository.findById(id);
+
+        // NPE 방지
+        if (optionalMember.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exits id : " + id);
+        }
+
+        Member findMember = optionalMember.get();
+
+        memberRepository.delete(findMember);
+
+    }
+
 }
