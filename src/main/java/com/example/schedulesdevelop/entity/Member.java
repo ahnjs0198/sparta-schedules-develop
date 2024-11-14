@@ -3,6 +3,8 @@ package com.example.schedulesdevelop.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Entity
 @Table(name = "member")
@@ -24,5 +26,7 @@ public class Member extends BaseEntity{
         this.username = username;
         this.password = password;
         this.email = email;
+        super.createdAt = LocalDateTime.now();
+        super.modifiedAt = LocalDateTime.now();
     }
 }

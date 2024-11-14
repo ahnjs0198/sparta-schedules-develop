@@ -26,7 +26,7 @@ public class ScheduleService {
 
         Schedule savedSchedule = scheduleRepository.save(schedule);
 
-        return new ScheduleResponseDto(savedSchedule.getId(), savedSchedule.getTitle(), savedSchedule.getTodo());
+        return new ScheduleResponseDto(savedSchedule.getId(), savedSchedule.getTitle(), savedSchedule.getTodo(), savedSchedule.getCreatedAt(), savedSchedule.getModifiedAt());
     }
 
     public List<ScheduleResponseDto> findAll() {
@@ -37,7 +37,7 @@ public class ScheduleService {
 
         Schedule findSchedule = scheduleRepository.findByIdOrElseThrow(id);
 
-        return new ScheduleResponseDto(findSchedule.getId(),findSchedule.getTitle(), findSchedule.getTodo());
+        return new ScheduleResponseDto(findSchedule.getId(),findSchedule.getTitle(), findSchedule.getTodo(), findSchedule.getCreatedAt(), findSchedule.getModifiedAt());
     }
 
     public ScheduleResponseDto updateSchedule(Long id, String title, String todo) {
@@ -49,7 +49,7 @@ public class ScheduleService {
 
         Schedule savedSchedule = scheduleRepository.save(findSchedule);
 
-        return new ScheduleResponseDto(savedSchedule.getId(),savedSchedule.getTitle(), savedSchedule.getTodo());
+        return new ScheduleResponseDto(savedSchedule.getId(),savedSchedule.getTitle(), savedSchedule.getTodo(), savedSchedule.getCreatedAt(), savedSchedule.getModifiedAt());
     }
 
     public void delete(Long id) {

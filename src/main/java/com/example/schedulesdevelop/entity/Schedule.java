@@ -3,6 +3,8 @@ package com.example.schedulesdevelop.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Entity
 @Table(name = "schedule")
@@ -26,6 +28,8 @@ public class Schedule extends BaseEntity {
     public Schedule(String title, String todo) {
         this.title = title;
         this.todo = todo;
+        super.createdAt = LocalDateTime.now();
+        super.modifiedAt = LocalDateTime.now();
     }
 
     public void setMember(Member member) {
@@ -34,9 +38,11 @@ public class Schedule extends BaseEntity {
 
     public void updateTodo(String todo) {
         this.todo = todo;
+        super.modifiedAt = LocalDateTime.now();
     }
 
     public void updateTitle(String title) {
         this.title = title;
+        super.modifiedAt = LocalDateTime.now();
     }
 }
