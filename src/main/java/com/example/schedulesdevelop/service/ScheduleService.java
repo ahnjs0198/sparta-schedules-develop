@@ -40,10 +40,23 @@ public class ScheduleService {
         return new ScheduleResponseDto(findSchedule.getId(),findSchedule.getTitle(), findSchedule.getTodo());
     }
 
+    public ScheduleResponseDto updateSchedule(Long id, String title, String todo) {
+
+        Schedule findSchedule = scheduleRepository.findByIdOrElseThrow(id);
+
+        findSchedule.updateTitle(title);
+        findSchedule.updateTodo(todo);
+
+        Schedule savedSchedule = scheduleRepository.save(findSchedule);
+
+        return new ScheduleResponseDto(savedSchedule.getId(),savedSchedule.getTitle(), savedSchedule.getTodo());
+    }
+
     public void delete(Long id) {
 
         Schedule findSchedule = scheduleRepository.findByIdOrElseThrow(id);
 
         scheduleRepository.delete(findSchedule);
     }
+
 }
