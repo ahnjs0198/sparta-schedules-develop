@@ -19,6 +19,12 @@ public class MemberService {
 
     public SignUpResponseDto signUp(String username, String password, String email) {
 
+        Optional<Member> memberByUsername = memberRepository.findMemberByUsername(username);
+
+        if(memberByUsername.isPresent()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already exists.");
+        }
+
         final Member member = new Member(username, password, email);
 
         Member savedMember = memberRepository.save(member);
