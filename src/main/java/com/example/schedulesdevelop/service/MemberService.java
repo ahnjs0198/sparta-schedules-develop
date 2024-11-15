@@ -1,5 +1,6 @@
 package com.example.schedulesdevelop.service;
 
+import com.example.schedulesdevelop.dto.LoginResponseDto;
 import com.example.schedulesdevelop.dto.MemberResponseDto;
 import com.example.schedulesdevelop.dto.SignUpResponseDto;
 import com.example.schedulesdevelop.entity.Member;
@@ -46,4 +47,10 @@ public class MemberService {
         return new MemberResponseDto(findMember.getUsername(), findMember.getEmail(), findMember.getCreatedAt(), findMember.getModifiedAt());
     }
 
+    public LoginResponseDto login(String email, String password) {
+
+        Long index = memberRepository.findIdByEmailAndPassword(email, password);
+
+        return new LoginResponseDto(index);
+    }
 }
